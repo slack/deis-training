@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: happy-duckling
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: happy-duckling
+      fleet: a
+  template:
+    metadata:
+      labels:
+        app: happy-duckling
+        fleet: a
+        version: v2
+    spec:
+      containers:
+      - name: happy-duckling
+        image: nginx:1.11.0
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
